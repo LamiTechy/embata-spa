@@ -5,10 +5,7 @@ import { getService } from "./services";
 import { initializeTransaction, verifyTransaction } from "./paystack";
 import { sendAdminNewBooking, sendCustomerConfirmation } from "./emails";
 import type { BookingInput } from "./validation";
-
-export function siteUrl(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-}
+import { siteUrl } from "./site";
 
 export function generateReference(): string {
   const stamp = Date.now().toString(36).toUpperCase();

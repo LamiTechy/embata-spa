@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -18,10 +19,8 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-
 export const metadata: Metadata = {
-  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
+  metadataBase: new URL(siteUrl()),
   title: {
     default: "Embata Massage Spa | Massage Therapist in Ikeja, Lagos",
     template: "%s | Embata Massage Spa",

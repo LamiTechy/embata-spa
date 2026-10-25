@@ -1,6 +1,7 @@
 import type { Booking } from "@prisma/client";
 import { sendEmail } from "./brevo";
 import { formatNaira } from "./services";
+import { siteUrl } from "./site";
 import type { EnquiryInput } from "./validation";
 
 const BRAND = "#C4816B";
@@ -81,7 +82,7 @@ export async function sendAdminNewBooking(booking: Booking): Promise<void> {
        ${PAID_BADGE}
        <div style="height:16px;"></div>
        ${rows(details(booking))}
-       <p style="margin:24px 0 0;"><a href="${process.env.NEXT_PUBLIC_SITE_URL}/admin" style="display:inline-block;background:${BRAND};color:#fff;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:bold;">Open admin panel</a></p>`
+       <p style="margin:24px 0 0;"><a href="${siteUrl()}/admin" style="display:inline-block;background:${BRAND};color:#fff;text-decoration:none;padding:12px 24px;border-radius:999px;font-size:14px;font-weight:bold;">Open admin panel</a></p>`
     ),
   });
 }
