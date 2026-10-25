@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BookingStatus {
+  PENDING_PAYMENT
+  PAID
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  FAILED
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  reference     String        @unique
+  service       String
+  serviceName   String
+  amountKobo    Int
+  currency      String        @default("NGN")
+  customerName  String
+  customerEmail String
+  customerPhone String
+  preferredDate String?
+  preferredTime String?
+  notes         String?
+  status        BookingStatus @default(PENDING_PAYMENT)
+  paidAt        DateTime?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([status, createdAt])
+}
